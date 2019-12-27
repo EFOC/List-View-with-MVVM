@@ -1,17 +1,18 @@
 package com.example.listviewmvvm.adapters
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.RelativeLayout
 import android.widget.TextView
 import com.example.listviewmvvm.R
 import com.example.listviewmvvm.models.Place
+import com.squareup.picasso.Picasso
 
-class RecyclerViewAdapter(var places: ArrayList<Place>): RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
+class RecyclerViewAdapter(val context: Context, var places: ArrayList<Place>): RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
     private val LOG_TAG = "RecyclerViewAdapter"
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,19 +27,11 @@ class RecyclerViewAdapter(var places: ArrayList<Place>): RecyclerView.Adapter<Re
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Log.d(LOG_TAG, "onBindViewHolder: called")
         holder.imageName.text = places[position].placeName
-        holder.imageView.setImageResource(R.drawable.abc_ic_star_black_36dp)
+        Picasso.with(context).load(places[position].placeView).into(holder.imageView)
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-
-        var imageView: ImageView
-        var imageName: TextView
-        var layout: RelativeLayout
-
-        init {
-            imageView = itemView.findViewById(R.id.place_view)
-            imageName = itemView.findViewById(R.id.place_name)
-            layout = itemView.findViewById(R.id.parent_layout)
-        }
+        var imageView: ImageView = itemView.findViewById(R.id.place_view)
+        var imageName: TextView = itemView.findViewById(R.id.place_name)
     }
 }
