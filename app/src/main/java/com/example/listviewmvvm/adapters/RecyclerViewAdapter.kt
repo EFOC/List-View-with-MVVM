@@ -10,9 +10,14 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.example.listviewmvvm.R
+import com.example.listviewmvvm.models.Place
 
-class RecyclerViewAdapter(var context: Context, var imageNames: ArrayList<String>, var imageViews: ArrayList<String>): RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
+class RecyclerViewAdapter(var context: Context, var places: ArrayList<Place>): RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
     private val LOG_TAG = "RecyclerViewAdapter"
+
+    init {
+
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_places, parent, false)
@@ -20,12 +25,12 @@ class RecyclerViewAdapter(var context: Context, var imageNames: ArrayList<String
     }
 
     override fun getItemCount(): Int {
-        return imageViews.size
+        return places.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Log.d(LOG_TAG, "onBindViewHolder: called")
-        holder.imageName.text = imageNames[position]
+        holder.imageName.text = places[position].placeName
         holder.imageView.setImageResource(R.drawable.abc_ic_star_black_36dp)
     }
 
