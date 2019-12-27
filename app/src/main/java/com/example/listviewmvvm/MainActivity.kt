@@ -19,11 +19,10 @@ class MainActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recycler_view)
         mainActivityViewModel = ViewModelProviders.of(this)[MainActivityViewModel::class.java]
         initRecyclerView()
-//        adapter.places = mainActivityViewModel.places
     }
 
     private fun initRecyclerView() {
-        adapter = RecyclerViewAdapter(this, mainActivityViewModel.places)
+        adapter = RecyclerViewAdapter( mainActivityViewModel.places)
         val linearLayout = LinearLayoutManager(this)
         recyclerView.layoutManager = linearLayout
         recyclerView.adapter = adapter
