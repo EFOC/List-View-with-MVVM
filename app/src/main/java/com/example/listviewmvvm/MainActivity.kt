@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView() {
-        adapter = RecyclerViewAdapter( mainActivityViewModel.places)
+        adapter = RecyclerViewAdapter(this, mainActivityViewModel.places)
         val linearLayout = LinearLayoutManager(this)
         recyclerView.layoutManager = linearLayout
         recyclerView.adapter = adapter
